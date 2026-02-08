@@ -1,0 +1,273 @@
+/* ========================================
+   b.organizze - Theme System
+   Dual Theme Support: Warm/Golden & Dark Cyan
+   ======================================== */
+
+/* ========== DEFAULT THEME: WARM/GOLDEN MODE ========== */
+:root {
+    /* Primary Colors */
+    --primary-color: #F97316;  /* Warm Orange */
+    --primary-light: #FBBF24; /* Light Gold */
+    --primary-dark: #EA580C;  /* Dark Orange */
+    --primary-accent: #F59E0B; /* Golden Accent */
+
+    /* Secondary Colors */
+    --secondary-color: #E879F9; /* Soft Purple */
+    --secondary-light: #F3B4F9; /* Light Purple */
+
+    /* Gradient Background */
+    --bg-gradient-start: #FFFBEB; /* Cream */
+    --bg-gradient-mid: #FEF3C7;   /* Light Beige */
+    --bg-gradient-end: #FCD34D;   /* Gold */
+
+    /* Status Colors */
+    --success-color: #10B981;  /* Green */
+    --error-color: #EF4444;    /* Red */
+    --warning-color: #F59E0B;  /* Orange */
+    --info-color: #3B82F6;     /* Blue */
+
+    /* Neutral Colors */
+    --text-primary: #1F2937;   /* Dark Gray */
+    --text-secondary: #6B7280; /* Medium Gray */
+    --text-light: #F3F4F6;     /* Light Gray */
+    --bg-card: rgba(255, 255, 255, 0.9);  /* Card Background */
+    --bg-primary: #FFFBEB;     /* Primary Background */
+    --border-color: rgba(249, 115, 22, 0.2); /* Warm Border */
+
+    /* Transparency & Effects */
+    --glass-opacity: 0.8;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.15);
+    --backdrop-blur: 12px;
+    --border-radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== DARK CYAN THEME ========== */
+:root[data-theme="dark"] {
+    /* Primary Colors */
+    --primary-color: #06B6D4;  /* Cyan */
+    --primary-light: #22D3EE;  /* Light Cyan */
+    --primary-dark: #0891B2;   /* Dark Cyan */
+    --primary-accent: #14B8A6; /* Teal Accent */
+
+    /* Secondary Colors */
+    --secondary-color: #8B5CF6; /* Purple */
+    --secondary-light: #A78BFA; /* Light Purple */
+
+    /* Gradient Background */
+    --bg-gradient-start: #0F172A; /* Dark Blue */
+    --bg-gradient-mid: #1E293B;   /* Slate */
+    --bg-gradient-end: #334155;   /* Light Slate */
+
+    /* Status Colors */
+    --success-color: #10B981;  /* Green */
+    --error-color: #F87171;    /* Light Red */
+    --warning-color: #FBBF24;  /* Gold */
+    --info-color: #60A5FA;     /* Light Blue */
+
+    /* Neutral Colors */
+    --text-primary: #F1F5F9;   /* Light Text */
+    --text-secondary: #CBD5E1; /* Medium Light Text */
+    --text-light: #94A3B8;     /* Dim Text */
+    --bg-card: rgba(15, 23, 42, 0.8);     /* Card Background */
+    --bg-primary: #0F172A;     /* Primary Background */
+    --border-color: rgba(6, 182, 212, 0.2); /* Cyan Border */
+
+    /* Transparency & Effects */
+    --glass-opacity: 0.85;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.5);
+    --backdrop-blur: 12px;
+    --border-radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== THEME APPLICATION ========== */
+body {
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
+    background-attachment: fixed;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+/* Apply wallpaper if set */
+body[style*="background-image"] {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Wallpaper overlay for transparency control */
+.wallpaper-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
+    pointer-events: none;
+    z-index: -1;
+    opacity: var(--wallpaper-opacity, 0.3);
+}
+
+/* ========== COMPONENT THEMING ========== */
+
+/* Cards & Panels */
+.card,
+.section,
+.login-form,
+.modal {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, var(--glass-opacity)),
+        rgba(255, 255, 255, calc(var(--glass-opacity) * 0.7))
+    ) !important;
+    backdrop-filter: blur(var(--backdrop-blur));
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+}
+
+:root[data-theme="dark"] .card,
+:root[data-theme="dark"] .section,
+:root[data-theme="dark"] .login-form,
+:root[data-theme="dark"] .modal {
+    background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, var(--glass-opacity)),
+        rgba(30, 41, 59, calc(var(--glass-opacity) * 0.7))
+    ) !important;
+    border-color: var(--border-color);
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-accent));
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+:root[data-theme="dark"] input[type="text"],
+:root[data-theme="dark"] input[type="email"],
+:root[data-theme="dark"] input[type="password"],
+:root[data-theme="dark"] input[type="number"],
+:root[data-theme="dark"] textarea,
+:root[data-theme="dark"] select {
+    background: rgba(15, 23, 42, 0.7);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Range Slider (for transparency control) */
+input[type="range"] {
+    accent-color: var(--primary-color);
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: linear-gradient(to right, var(--border-color), var(--primary-color));
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar Theme */
+.sidebar {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.85)
+    ) !important;
+    backdrop-filter: blur(12px);
+    border-right: 1px solid var(--border-color);
+}
+
+:root[data-theme="dark"] .sidebar {
+    background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.9),
+        rgba(30, 41, 59, 0.85)
+    ) !important;
+}
+
+/* Status Color Helpers */
+.text-success { color: var(--success-color) !important; }
+.text-error { color: var(--error-color) !important; }
+.text-warning { color: var(--warning-color) !important; }
+.text-info { color: var(--info-color) !important; }
+
+.bg-success { background-color: rgba(16, 185, 129, 0.1); }
+.bg-error { background-color: rgba(239, 68, 68, 0.1); }
+.bg-warning { background-color: rgba(245, 158, 11, 0.1); }
+.bg-info { background-color: rgba(59, 130, 246, 0.1); }
+
+.badge-success {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: var(--success-color);
+}
+
+.badge-error {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: var(--error-color);
+}
+
+.badge-warning {
+    background-color: rgba(245, 158, 11, 0.2);
+    color: var(--warning-color);
+}
+
+.badge-info {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: var(--info-color);
+}
