@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>b.organizze - Gerenciamento Financeiro Pessoal</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header/Navigation -->
+        <header class="header">
+            <nav class="navbar">
+                <div class="logo">
+                    <h1>b.organizze</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Recursos</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#login" class="btn-login">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Organize suas Finanças com Facilidade</h2>
+                <p>Controle completo de contas, cartões, orçamentos e investimentos em um só lugar</p>
+                <button class="btn btn-primary" id="get-started">Começar Agora</button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <h3>Principais Recursos</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>Gerenciamento de Contas</h4>
+                    <p>Controle múltiplas contas bancárias e carteiras em um único dashboard</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Orçamento Inteligente</h4>
+                    <p>Crie orçamentos e acompanhe seus gastos automaticamente</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Investimentos</h4>
+                    <p>Registre e acompanhe seus investimentos e rentabilidade</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Relatórios Avançados</h4>
+                    <p>Gera relatórios detalhados para análise de despesas</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Section -->
+        <section id="login" class="login-section">
+            <div class="login-form">
+                <h3>Faça Login</h3>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <p class="signup-link">Não tem conta? <a href="#signup">Cadastre-se</a></p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 b.organizze. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
