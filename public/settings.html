@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - b.organizze</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/themes.css">
+    <style>
+        .settings-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .settings-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .settings-header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .settings-header .back-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            background: var(--color-primary);
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .settings-header .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--color-primary-alpha);
+        }
+
+        .settings-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .settings-section:hover {
+            box-shadow: 0 8px 32px var(--color-shadow);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            margin: 0 0 1.5rem 0;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .setting-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .setting-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .setting-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .setting-description {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .theme-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .theme-option {
+            padding: 1rem;
+            border: 2px solid transparent;
+            border-radius: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .theme-option.warm {
+            background: linear-gradient(135deg, #d4af37 0%, #ffb347 100%);
+            color: #333;
+        }
+
+        .theme-option.dark {
+            background: linear-gradient(135deg, #1a1f3a 0%, #16213e 100%);
+            color: #fff;
+        }
+
+        .theme-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--color-shadow);
+        }
+
+        .theme-option.active {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-alpha);
+        }
+
+        .theme-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .theme-preview {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .wallpaper-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .wallpaper-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 0.8rem;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 1rem;
+            border: 2px solid var(--glass-border);
+            overflow: hidden;
+        }
+
+        .wallpaper-preview.dark-mode {
+            background-color: #1a1f3a;
+        }
+
+        .wallpaper-preview.light-mode {
+            background-color: #f5f5f5;
+        }
+
+        .wallpaper-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 1rem;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .file-input-label:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--color-primary-alpha);
+        }
+
+        .remove-wallpaper-btn {
+            padding: 1rem;
+            background: var(--color-danger, #e74c3c);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .remove-wallpaper-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+
+        .transparency-control {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .transparency-control input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--glass-border);
+            outline: none;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
+
+        .transparency-control input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+            box-shadow: 0 2px 8px var(--color-primary-alpha);
+        }
+
+        .transparency-control input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px var(--color-primary-alpha);
+        }
+
+        .transparency-value {
+            min-width: 60px;
+            text-align: right;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            background: var(--glass-border);
+            border-radius: 0.5rem;
+        }
+
+        .settings-footer {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--color-primary-alpha);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--glass-border);
+        }
+
+        @media (max-width: 768px) {
+            .settings-container {
+                padding: 1rem;
+            }
+
+            .settings-section {
+                padding: 1.5rem;
+            }
+
+            .wallpaper-controls {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-footer {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <div class="settings-header">
+            <a href="./dashboard.html" class="back-btn">← Voltar</a>
+            <h1>⚙️ Configurações</h1>
+        </div>
+
+        <!-- Theme Settings -->
+        <div class="settings-section">
+            <h2 class="section-title">🎨 Temas</h2>
+            
+            <div class="setting-item">
+                <label class="setting-label">Selecione um tema:</label>
+                <p class="setting-description">Escolha entre os temas disponíveis para personalizar a aparência da aplicação.</p>
+                
+                <div class="theme-selector">
+                    <div class="theme-option warm active" data-theme="warm">
+                        <div class="theme-name">Warm/Golden</div>
+                        <div class="theme-preview">Quente e acolhedor</div>
+                    </div>
+                    <div class="theme-option dark" data-theme="dark">
+                        <div class="theme-name">Dark Cyan</div>
+                        <div class="theme-preview">Escuro e moderno</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wallpaper Settings -->
+        <div class="wallpaper-section">
+            <h2 class="section-title">🖼️ Papéis de Parede</h2>
+            
+            <div class="setting-item">
+                <label class="setting-label">Visualização:</label>
+                <div class="wallpaper-preview" id="wallpaperPreview"></div>
+            </div>
+
+            <div class="setting-item">
+                <label class="setting-label">Fazer upload de imagem:</label>
+                <p class="setting-description">Selecione uma imagem para usar como fundo da aplicação.</p>
+                
+                <div class="wallpaper-controls">
+                    <div class="file-input-wrapper">
+                        <input type="file" id="wallpaperInput" accept="image/*">
+                        <label for="wallpaperInput" class="file-input-label">📁 Escolher Imagem</label>
+                    </div>
+                    <button class="remove-wallpaper-btn" id="removeWallpaper">🗑️ Remover Papel de Parede</button>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <label class="setting-label">Transparência do papel de parede:</label>
+                <p class="setting-description">Ajuste o nível de transparência da imagem (0% = transparente, 100% = opaco).</p>
+                
+                <div class="transparency-control">
+                    <input type="range" id="transparencySlider" min="0" max="100" value="70" aria-label="Transparência">
+                    <div class="transparency-value"><span id="transparencyValue">70</span>%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="settings-footer">
+            <a href="./dashboard.html" class="btn btn-secondary">Cancelar</a>
+            <button class="btn btn-primary" id="saveSettings">💾 Salvar Configurações</button>
+        </div>
+    </div>
+
+    <script src="../js/theme-manager.js"></script>
+    <script src="../js/settings.js"></script>
+</body>
+</html>
