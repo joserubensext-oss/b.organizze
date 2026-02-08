@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - b.organizze</title>
+    <link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>b.organizze</h2>
+                <button class="menu-toggle" id="menu-toggle">☰</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#dashboard" class="nav-link active">📊 Dashboard</a></li>
+                    <li><a href="#accounts" class="nav-link">💳 Contas</a></li>
+                    <li><a href="#transactions" class="nav-link">💸 Transações</a></li>
+                    <li><a href="#budget" class="nav-link">📈 Orçamento</a></li>
+                    <li><a href="#investments" class="nav-link">💹 Investimentos</a></li>
+                    <li><a href="#reports" class="nav-link">📋 Relatórios</a></li>
+                    <li><a href="#settings" class="nav-link">⚙️ Configurações</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn-logout" id="logout-btn">Sair</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="topbar">
+                <div class="topbar-left">
+                    <h1 id="page-title">Dashboard</h1>
+                </div>
+                <div class="topbar-right">
+                    <div class="user-profile">
+                        <img src="https://via.placeholder.com/40" alt="User Avatar" class="avatar">
+                        <div class="user-info">
+                            <p class="user-name" id="user-name">Usuário</p>
+                            <p class="user-email" id="user-email">user@organizze.app</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <section class="content">
+                <!-- Overview Cards -->
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">💰</div>
+                        <h3>Saldo Total</h3>
+                        <p class="card-value" id="total-balance">R$ 0,00</p>
+                        <p class="card-subtitle">Em todas as contas</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📊</div>
+                        <h3>Gásto este mês</h3>
+                        <p class="card-value" id="month-spending">R$ 0,00</p>
+                        <p class="card-subtitle">Até hoje</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🎯</div>
+                        <h3>Orçamento</h3>
+                        <p class="card-value" id="budget-remaining">R$ 0,00</p>
+                        <p class="card-subtitle">Disponível</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📈</div>
+                        <h3>Investimentos</h3>
+                        <p class="card-value" id="investments-total">R$ 0,00</p>
+                        <p class="card-subtitle">Aplicado</p>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="section">
+                    <h2>Transações Recentes</h2>
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-list">
+                            <tr>
+                                <td>01/02/2026</td>
+                                <td>Supermercado</td>
+                                <td>Alimentação</td>
+                                <td class="text-danger">-R$ 150,00</td>
+                                <td><span class="badge badge-success">Completa</span></td>
+                            </tr>
+                            <tr>
+                                <td>31/01/2026</td>
+                                <td>Salário</td>
+                                <td>Renda</td>
+                                <td class="text-success">+R$ 3.000,00</td>
+                                <td><span class="badge badge-success">Completa</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="section">
+                    <h2>Análise de Gastos</h2>
+                    <div class="chart-placeholder">
+                        <p>Gráfico de gastos por categoria</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
